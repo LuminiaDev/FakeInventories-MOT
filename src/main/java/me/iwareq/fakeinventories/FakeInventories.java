@@ -57,6 +57,7 @@ public class FakeInventories extends PluginBase implements Listener {
             }
         });
     }
+
     public static FakeBlock getFakeBlock(InventoryType inventoryType) {
         FakeBlock fakeBlock = FAKE_BLOCKS.get(inventoryType);
         if (fakeBlock == null) {

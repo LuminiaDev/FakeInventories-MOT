@@ -26,6 +26,7 @@ public class FakeInventory extends BaseInventory {
     @Getter
     @Setter
     private String title;
+
     @Setter
     private ItemHandler defaultItemHandler;
 
