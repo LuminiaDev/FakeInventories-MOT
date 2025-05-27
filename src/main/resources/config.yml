@@ -1,0 +1,5 @@
+# Fake block offset working mode
+# Available:
+#  STANDARD - Standard working mode
+#  HIDDEN   - Hidden working mode
+fake-block-offset-mode: "STANDARD"

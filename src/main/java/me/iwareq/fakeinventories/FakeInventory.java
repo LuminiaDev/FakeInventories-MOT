@@ -50,7 +50,12 @@ public class FakeInventory extends BaseInventory {
             packet.windowId = player.getWindowId(this);
             packet.type = this.getType().getNetworkType();
 
-            Vector3 position = this.fakeBlock.getPositions(player).get(0);
+            List<Vector3> positions = this.fakeBlock.getPositions(player);
+            if (positions.isEmpty()) {
+                return;
+            }
+
+            Vector3 position = positions.get(0);
             packet.x = position.getFloorX();
             packet.y = position.getFloorY();
             packet.z = position.getFloorZ();
@@ -59,7 +64,7 @@ public class FakeInventory extends BaseInventory {
             super.onOpen(player);
 
             this.sendContents(player);
-        }, 5);
+        }, 1);
     }
 
     @Override
@@ -73,7 +78,7 @@ public class FakeInventory extends BaseInventory {
 
         Server.getInstance().getScheduler().scheduleDelayedTask(FakeInventories.getInstance(), () -> {
             this.fakeBlock.remove(player);
-        }, 5);
+        }, 1);
     }
 
     public Item[] addItem(ItemHandler handler, Item... slots) {
