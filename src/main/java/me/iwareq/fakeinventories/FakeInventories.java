@@ -12,6 +12,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.plugin.PluginBase;
 import me.iwareq.fakeinventories.block.DoubleFakeBlock;
 import me.iwareq.fakeinventories.block.FakeBlock;
+import me.iwareq.fakeinventories.block.FakeBlockOffset;
 import me.iwareq.fakeinventories.block.SingleFakeBlock;
 import lombok.Getter;
 
@@ -24,9 +25,11 @@ public class FakeInventories extends PluginBase implements Listener {
     private static FakeInventories instance;
 
     private static final Map<InventoryType, FakeBlock> FAKE_BLOCKS = new EnumMap<>(InventoryType.class);
+    private static FakeBlockOffset FAKE_BLOCK_OFFSET;
 
     @Override
     public void onLoad() {
+        this.saveDefaultConfig();
         instance = this;
         FAKE_BLOCKS.put(InventoryType.CHEST, new SingleFakeBlock(BlockID.CHEST, BlockEntity.CHEST));
         FAKE_BLOCKS.put(InventoryType.ENDER_CHEST, new SingleFakeBlock(BlockID.ENDER_CHEST, BlockEntity.ENDER_CHEST));
@@ -38,6 +41,7 @@ public class FakeInventories extends PluginBase implements Listener {
         FAKE_BLOCKS.put(InventoryType.DROPPER, new SingleFakeBlock(BlockID.DROPPER, InventoryType.DROPPER.getDefaultTitle()));
         FAKE_BLOCKS.put(InventoryType.HOPPER, new SingleFakeBlock(BlockID.HOPPER_BLOCK, BlockEntity.HOPPER));
         FAKE_BLOCKS.put(InventoryType.SHULKER_BOX, new SingleFakeBlock(BlockID.SHULKER_BOX, BlockEntity.SHULKER_BOX));
+        FAKE_BLOCK_OFFSET = FakeBlockOffset.valueOf(this.getConfig().getString("fake-block-offset-mode").toUpperCase());
     }
 
     @Override
@@ -57,11 +61,16 @@ public class FakeInventories extends PluginBase implements Listener {
             }
         });
     }
+
     public static FakeBlock getFakeBlock(InventoryType inventoryType) {
         FakeBlock fakeBlock = FAKE_BLOCKS.get(inventoryType);
         if (fakeBlock == null) {
             throw new NullPointerException("FakeBlock for " + inventoryType.name() + " inventory not found!");
         }
         return fakeBlock;
+    }
+
+    public static FakeBlockOffset getFakeBlockOffset() {
+        return FAKE_BLOCK_OFFSET;
     }
 }
