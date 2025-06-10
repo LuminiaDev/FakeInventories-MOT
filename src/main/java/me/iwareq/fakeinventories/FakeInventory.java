@@ -23,6 +23,10 @@ public class FakeInventory extends BaseInventory {
 
     private final FakeBlock fakeBlock;
 
+    @Setter
+    @Getter
+    private int openDelay = 1;
+
     @Getter
     @Setter
     private String title;
@@ -64,7 +68,7 @@ public class FakeInventory extends BaseInventory {
             super.onOpen(player);
 
             this.sendContents(player);
-        }, 1);
+        }, openDelay);
     }
 
     @Override
