@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    `maven-publish`
 }
 
 group = "me.iwareq.fakeinventories"
@@ -17,12 +18,36 @@ dependencies {
 }
 
 tasks.withType<JavaCompile> {
-    options.encoding = Charsets.UTF_8.name()
+    options.encoding = "UTF-8"
+}
+
+tasks.withType<Javadoc> {
+    options.encoding = "UTF-8"
 }
 
 tasks.withType<ProcessResources> {
-    filteringCharset = Charsets.UTF_8.name()
     filesMatching("plugin.yml") {
-        expand("version" to version)
+        expand(project.properties)
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            name = "luminiadev"
+            url = uri("https://repo.luminiadev.com/snapshots")
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
     }
 }

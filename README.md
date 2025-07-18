@@ -1,9 +1,9 @@
-# FakeInventories [![](https://jitpack.io/v/IWareQ/FakeInventories.svg)](https://jitpack.io/#IWareQ/FakeInventories)
+# FakeInventories 
 
-FakeInventories is a simple library plugin for PowerNukkit/Nukkit Minecraft Bedrock core, that will help you to create
+FakeInventories is a simple library plugin for Nukkit-MOT Minecraft Bedrock server software, that will help you to create
 your custom virtual inventories with ease.
 
-##### [Download](https://github.com/IWareQ/FakeInventories/releases)
+##### [Download plugin](https://github.com/LuminiaDev/FakeInventories-MOT/releases)
 
 ## Usage
 
@@ -42,23 +42,35 @@ player.addWindow(inventory);
 ```
 
 ## Maven
-
-#### Repository
-
+Adding repo:
 ```xml
 <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+        <id>luminiadev-repository-snapshots</id>
+        <url>https://repo.luminiadev.com/snapshots</url>
     </repository>
 </repositories>
 ```
 
-#### Dependency
+Adding dependency:
 ```xml
 <dependency>
-    <groupId>com.github.IWareQ</groupId>
+    <groupId>me.iwareq.fakeinventories</groupId>
     <artifactId>FakeInventories</artifactId>
-    <version>Version</version>
+    <version>1.1.9-MOT</version>
 </dependency>
+```
+
+## Gradle
+Adding repo:
+```kts
+maven {
+    name = "luminiadevRepositorySnapshots"
+    url = uri("https://repo.luminiadev.com/snapshots")
+}
+```
+
+Adding dependency:
+```kts
+compileOnly("me.iwareq.fakeinventories:FakeInventories:1.1.9-MOT")
 ```
