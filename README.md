@@ -56,7 +56,7 @@ Adding dependency:
 ```xml
 <dependency>
     <groupId>me.iwareq.fakeinventories</groupId>
-    <artifactId>FakeInventories</artifactId>
+    <artifactId>fakeinventories</artifactId>
     <version>1.1.9-MOT</version>
 </dependency>
 ```
@@ -72,5 +72,5 @@ maven {
 
 Adding dependency:
 ```kts
-compileOnly("me.iwareq.fakeinventories:FakeInventories:1.1.9-MOT")
+compileOnly("me.iwareq.fakeinventories:fakeinventories:1.1.9-MOT")
 ```
